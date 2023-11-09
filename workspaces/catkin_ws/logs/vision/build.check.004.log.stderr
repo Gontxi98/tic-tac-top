@@ -1,0 +1,13 @@
+[31m[1mCMake Error[0m at /opt/ros/noetic/share/catkin/cmake/assert.cmake:20 (message):
+
+
+  Assertion failed: file
+  '/home/ubuntu/workspaces/catkin_ws/src/vision/msg/Num.msg' does not exist.
+  Message: message file not found
+
+[36mCall Stack (most recent call first):[0m
+  /opt/ros/noetic/share/genmsg/cmake/genmsg-extras.cmake:113 (assert_file_exists)
+  CMakeLists.txt:129 (add_message_files)
+
+
+make: *** [Makefile:544: cmake_check_build_system] Error 1

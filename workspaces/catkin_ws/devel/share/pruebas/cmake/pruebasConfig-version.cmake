@@ -1,0 +1,1 @@
+/home/ubuntu/workspaces/catkin_ws/devel/.private/pruebas/share/pruebas/cmake/pruebasConfig-version.cmake

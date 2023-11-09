@@ -1,0 +1,1 @@
+/home/ubuntu/workspaces/catkin_ws/devel/.private/urdf_generator/share/urdf_generator/cmake/urdf_generatorConfig.cmake

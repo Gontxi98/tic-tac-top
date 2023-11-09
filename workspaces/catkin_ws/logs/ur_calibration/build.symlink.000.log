@@ -1,0 +1,4 @@
+Symlinking /home/ubuntu/workspaces/catkin_ws/devel/share/ur_calibration/cmake/ur_calibrationConfig.cmake
+Symlinking /home/ubuntu/workspaces/catkin_ws/devel/share/ur_calibration/cmake/ur_calibrationConfig-version.cmake
+Symlinking /home/ubuntu/workspaces/catkin_ws/devel/lib/ur_calibration/calibration_correction
+Symlinking /home/ubuntu/workspaces/catkin_ws/devel/lib/pkgconfig/ur_calibration.pc

@@ -1,0 +1,1 @@
+/home/ubuntu/workspaces/catkin_ws/devel/.private/ur10e_moveit_config/lib/pkgconfig/ur10e_moveit_config.pc
