@@ -7,15 +7,30 @@ from control_msgs.msg import GripperCommandActionGoal
 import rospy
 from typing import Union
 from std_msgs.msg import String
+from math import pi
 
 class ControlRobot:
     def __init__(self) -> None:
         rospy.init_node("mi_primer_nodo",anonymous=True)
 
-        msg = rospy.Subscriber("coordenadas", String, self.recibir_mensajes)
+        self.act_msg = rospy.Subscriber("coordenadas", String, self.recibir_mensajes)
         self.move_group = MoveGroupCommander("robot")
         self.planning_scene = PlanningSceneInterface()
         self.robot_commander = RobotCommander()
+        
+        self.rest_mode = [0, pi/2, 0, pi/2, 0, 0]
+        self.move_mode = [0,0,0,0,0,0]
+        
+        pose = PoseStamped()
+        pose.pose.position.x = 0
+        pose.pose.position.y = 0
+        pose.pose.position.z = 0.43942767218999645
+        pose.pose.orientation.x = 0.9439352905762008
+        pose.pose.orientation.y = 0.3301305294107684
+        pose.pose.orientation.z = 0
+        pose.pose.orientation.w = 0
+        
+        self.put_Pose = pose
 
         pose_suelo = PoseStamped()
         pose_suelo.header.frame_id = self.robot_commander.get_planning_frame()
@@ -31,6 +46,32 @@ class ControlRobot:
     def recibir_mensajes(data: String) -> None:
         return data.data
 
+    def recibir_pose(self,poseDest:PoseStamped)-> (int,int):
+        x = 0
+        y = 0
+        x  = poseDest.pose.position.x
+        y = poseDest.pose.position.y
+        ## Construir objeto pose con el destino
+        self.put_Pose.pose.position.x = x
+        self.put_Pose.pose.position.y = y 
+        ##Posicion para mover
+        self.mover_articulaciones(self.move_mode)
+        ##Posicion para coger
+        self.mover_a_pose(self.put_Pose)
+        ##Hacer lo que tenga que hacer con la pinza
+        
+        #Mover a articulaciones de movimiento
+        self.mover_articulaciones(self.move_mode)
+        ##Recalcular posición de movimiento
+        
+        ##Mover a pose final
+        self.mover_a_pose(self.put_Pose)
+        ##Ir a descanso
+        self.mover_articulaciones(self.move_mode)
+        self.mover_articulaciones(self.rest_mode)
+        #Aqui enviamos el mensaje para poder obtener el estado tablero
+        
+        return (x,y)
     def mover_articulaciones(self, valores_articulaciones: list) -> bool:
         return self.move_group.go(valores_articulaciones)
 
@@ -64,6 +105,7 @@ class ControlRobot:
             return False
 
         return self.move_group.execute(trajectory)
+    
 
     def manejar_pinza(self, anchura: float, fuerza: float) -> None:
         msg_pinza = GripperCommandActionGoal()
@@ -73,10 +115,10 @@ class ControlRobot:
         self.publicador_pinza.publish(msg_pinza)
 
 if __name__ == '__main__':
+
     control_robot = ControlRobot()
-    fuera_de_vista = list([-6.977711812794496e-06, -1.570796327, -3.809928966802545e-05, 
-                  -1.5708157024779261, -1.1269246236622621e-05, -2.6051198140919496e-05])   ##Mover robot a sitio fuera de la vista de la cámara
-    control_robot.mover_a_pose(fuera_de_vista)
+    ##fuera_de_vista = [0, pi/2, 0, pi/2, 0, 0]   ##Mover robot a sitio fuera de la vista de la cámara
+    control_robot.mover_articulaciones(control_robot.rest_mode)
     
     
     #current_joit = control_robot.move_group.get_current_joint_values()

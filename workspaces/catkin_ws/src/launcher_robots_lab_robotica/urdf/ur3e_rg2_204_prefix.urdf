@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <robot name="ur3e_robot">
  <!-- links: main serial chain -->
-  <link name="204_base_link"/>
+  <link name="base_link"/>
   <link name="204_base_link_inertia">
     <visual>
       <origin rpy="0 0 3.141592653589793" xyz="0 0 0"/>
