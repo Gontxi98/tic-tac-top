@@ -1,0 +1,3 @@
+Symlinking /home/ubuntu/workspaces/catkin_ws/devel/share/nodo_robotica/cmake/nodo_roboticaConfig.cmake
+Symlinking /home/ubuntu/workspaces/catkin_ws/devel/share/nodo_robotica/cmake/nodo_roboticaConfig-version.cmake
+Symlinking /home/ubuntu/workspaces/catkin_ws/devel/lib/pkgconfig/nodo_robotica.pc

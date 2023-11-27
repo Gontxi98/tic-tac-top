@@ -6,14 +6,16 @@ from tf.transformations import quaternion_from_euler
 from control_msgs.msg import GripperCommandActionGoal
 import rospy
 from typing import Union
+from std_msgs.msg import String
 
 class ControlRobot:
     def __init__(self) -> None:
         rospy.init_node("mi_primer_nodo",anonymous=True)
-        rospy.sleep(2)
+
+        msg = rospy.Subscriber("coordenadas", String, self.recibir_mensajes)
         self.move_group = MoveGroupCommander("robot")
         self.planning_scene = PlanningSceneInterface()
-        self.robot_commander = RobotCommander()        
+        self.robot_commander = RobotCommander()
 
         pose_suelo = PoseStamped()
         pose_suelo.header.frame_id = self.robot_commander.get_planning_frame()
@@ -26,6 +28,8 @@ class ControlRobot:
         self.publicador_pinza = rospy.Publisher("/rg2_action_server/goal",
                                                  GripperCommandActionGoal,
                                                  queue_size=10)
+    def recibir_mensajes(data: String) -> None:
+        return data.data
 
     def mover_articulaciones(self, valores_articulaciones: list) -> bool:
         return self.move_group.go(valores_articulaciones)
@@ -70,11 +74,15 @@ class ControlRobot:
 
 if __name__ == '__main__':
     control_robot = ControlRobot()
-    current_joit = control_robot.move_group.get_current_joint_values()
-    current_pose = control_robot.move_group.get_current_pose() #Obtener valores de la pose struct [x,y,z,w,ox,oy,oz]
-    ##control_robot.mover_a_pose([0.2,0.2,0.2,0,0,0])
-    print(current_joit)
-    print(current_pose)
+    fuera_de_vista = list([-6.977711812794496e-06, -1.570796327, -3.809928966802545e-05, 
+                  -1.5708157024779261, -1.1269246236622621e-05, -2.6051198140919496e-05])   ##Mover robot a sitio fuera de la vista de la cámara
+    control_robot.mover_a_pose(fuera_de_vista)
     
+    
+    #current_joit = control_robot.move_group.get_current_joint_values()
+    #current_pose = control_robot.move_group.get_current_pose() #Obtener valores de la pose struct [x,y,z,w,ox,oy,oz]
+    ##control_robot.mover_a_pose([0.2,0.2,0.2,0,0,0])
+    #print(current_joit)
+    #print(current_pose)
     pass
     
