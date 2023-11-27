@@ -1,7 +1,7 @@
 from moveit_commander import MoveGroupCommander
 from moveit_commander import PlanningSceneInterface
 from moveit_commander import RobotCommander
-from geometry_msgs.msg import PoseStamped
+from geometry_msgs.msg import PoseStamped, PoseArray 
 from tf.transformations import quaternion_from_euler
 from control_msgs.msg import GripperCommandActionGoal
 import rospy
@@ -46,9 +46,14 @@ class ControlRobot:
     def recibir_mensajes(data: String) -> None:
         return data.data
 
-    def recibir_pose(self,poseDest:PoseStamped)-> (int,int):
+    def recibir_pose(self,poseDest:PoseArray)-> (int,int):
         x = 0
         y = 0
+        return (x,y)
+    
+    def pocess_posearray(self,posearray:PoseArray):
+        ##
+        poseDest = posearray.poses[0]
         x  = poseDest.pose.position.x
         y = poseDest.pose.position.y
         ## Construir objeto pose con el destino
@@ -66,12 +71,13 @@ class ControlRobot:
         
         ##Mover a pose final
         self.mover_a_pose(self.put_Pose)
+        #Abrir la pinza
+        
         ##Ir a descanso
         self.mover_articulaciones(self.move_mode)
         self.mover_articulaciones(self.rest_mode)
         #Aqui enviamos el mensaje para poder obtener el estado tablero
-        
-        return (x,y)
+        return
     def mover_articulaciones(self, valores_articulaciones: list) -> bool:
         return self.move_group.go(valores_articulaciones)
 
