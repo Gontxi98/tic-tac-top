@@ -18,8 +18,8 @@ class ControlRobot:
         self.planning_scene = PlanningSceneInterface()
         self.robot_commander = RobotCommander()
         
-        self.rest_mode = [0, pi/2, 0, pi/2, 0, 0]
-        self.move_mode = [0,0,0,0,0,0]
+        self.rest_mode = [0, -pi/2, 0, -pi/2, 0, 0]
+        self.move_mode = [-1.9223664442645472, -1.6724544964232386, -1.3941993713378906, -1.6441379986205042, 1.575406551361084, -0.33311397234071904]
         
         pose = PoseStamped()
         pose.pose.position.x = 0
@@ -124,13 +124,14 @@ if __name__ == '__main__':
 
     control_robot = ControlRobot()
     ##fuera_de_vista = [0, pi/2, 0, pi/2, 0, 0]   ##Mover robot a sitio fuera de la vista de la cámara
-    control_robot.mover_articulaciones(control_robot.rest_mode)
+    #control_robot.mover_articulaciones(control_robot.rest_mode)
     
+    #control_robot.mover_articulaciones(control_robot.move_mode)
     
-    #current_joit = control_robot.move_group.get_current_joint_values()
-    #current_pose = control_robot.move_group.get_current_pose() #Obtener valores de la pose struct [x,y,z,w,ox,oy,oz]
+    current_joit = control_robot.move_group.get_current_joint_values()
+    current_pose = control_robot.move_group.get_current_pose() #Obtener valores de la pose struct [x,y,z,w,ox,oy,oz]
     ##control_robot.mover_a_pose([0.2,0.2,0.2,0,0,0])
-    #print(current_joit)
-    #print(current_pose)
+    print(current_joit)
+    print(current_pose)
     pass
     
