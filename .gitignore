@@ -297,3 +297,5 @@ workspaces/catkin_ws/logs/vision/build.mkdir.014.log
 workspaces/catkin_ws/logs/vision/build.mkdir.015.log
 workspaces/catkin_ws/logs/vision/build.symlink.003.log
 workspaces/catkin_ws/src/Universal_Robots_ROS_Driver
+workspaces/catkin_ws/src/our_app
+workspaces/catkin_ws/logs
