@@ -6,14 +6,15 @@ from tf.transformations import quaternion_from_euler
 from control_msgs.msg import GripperCommandActionGoal
 import rospy
 from typing import Union
-from std_msgs.msg import String
+from std_msgs.msg import String, Bool
 from math import pi
 
 class ControlRobot:
     def __init__(self) -> None:
         rospy.init_node("mi_primer_nodo",anonymous=True)
 
-        self.act_msg = rospy.Subscriber("coordenadas", String, self.recibir_mensajes)
+        self.subscriptor_pickplace = rospy.Subscriber("topic_robot_pickplace", PoseArray, self.recibir_pickplace)
+        self.publicador = rospy.Publisher("topic_robot_trabajando", Bool, queue_size=1)
         self.move_group = MoveGroupCommander("robot")
         self.planning_scene = PlanningSceneInterface()
         self.robot_commander = RobotCommander()
@@ -36,6 +37,20 @@ class ControlRobot:
         pose_suelo.header.frame_id = self.robot_commander.get_planning_frame()
         pose_suelo.pose.position.z = -0.011
         self.planning_scene.add_box("suelo",pose_suelo,(3,3,0.02))
+        
+        pose_palo_vertical = PoseStamped()
+        pose_palo_vertical.header.frame_id = self.robot_commander.get_planning_frame()
+        pose_palo_vertical.pose.position.z = 0
+        pose_palo_vertical.pose.position.x = 0.30
+        pose_palo_vertical.pose.position.y = -0.05
+        self.planning_scene.add_box("palo_vertical",pose_palo_vertical,(0.1,0.1,3))
+        
+        pose_palo_horizontal = PoseStamped()
+        pose_palo_horizontal.header.frame_id = self.robot_commander.get_planning_frame()
+        pose_palo_horizontal.pose.position.z = 0.77
+        pose_palo_horizontal.pose.position.x = 0.30
+        pose_palo_horizontal.pose.position.y = 0
+        self.planning_scene.add_box("palo_horizontal",pose_palo_vertical,(0.1,0.1,3))
 
         self.move_group.set_planning_time(10)
         self.move_group.set_num_planning_attempts(5)
@@ -43,15 +58,15 @@ class ControlRobot:
         self.publicador_pinza = rospy.Publisher("/rg2_action_server/goal",
                                                  GripperCommandActionGoal,
                                                  queue_size=10)
-    def recibir_mensajes(data: String) -> None:
-        return data.data
+    def recibir_pickplace(data: PoseArray) -> PoseArray:
+        return data
 
     def recibir_pose(self,poseDest:PoseArray)-> (int,int):
         x = 0
         y = 0
         return (x,y)
     
-    def pocess_posearray(self,posearray:PoseArray):
+    def process_posearray(self,posearray:PoseArray):
         ##
         poseDest = posearray.poses[0]
         x  = poseDest.pose.position.x
@@ -121,17 +136,22 @@ class ControlRobot:
         self.publicador_pinza.publish(msg_pinza)
 
 if __name__ == '__main__':
-
     control_robot = ControlRobot()
+    while not rospy.is_shutdown():
+        control_robot.publicador.publish(True)
+        if control_robot.subscriptor_pickplace is not None:
+            control_robot.process_posearray(control_robot.subscriptor_pickplace)
+            control_robot.subscriptor_pickplace = None
+            control_robot.publicador.publish(False)
+        
     ##fuera_de_vista = [0, pi/2, 0, pi/2, 0, 0]   ##Mover robot a sitio fuera de la vista de la cámara
     #control_robot.mover_articulaciones(control_robot.rest_mode)
     
     #control_robot.mover_articulaciones(control_robot.move_mode)
     
-    current_joit = control_robot.move_group.get_current_joint_values()
-    current_pose = control_robot.move_group.get_current_pose() #Obtener valores de la pose struct [x,y,z,w,ox,oy,oz]
+    #current_joit = control_robot.move_group.get_current_joint_values()
+    #current_pose = control_robot.move_group.get_current_pose() #Obtener valores de la pose struct [x,y,z,w,ox,oy,oz]
     ##control_robot.mover_a_pose([0.2,0.2,0.2,0,0,0])
-    print(current_joit)
-    print(current_pose)
-    pass
+    #print(current_joit)
+    #print(current_pose)
     

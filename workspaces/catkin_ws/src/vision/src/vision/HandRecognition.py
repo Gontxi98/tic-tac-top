@@ -2,7 +2,6 @@ import cv2
 import numpy as np
 from math import hypot
 
-
 def processImage(img):
     #img = cv2.imread("./HandContourRecognition/ProjectImages/FiveFingers.jpeg")
     #canny = cv2.Canny(img,100,255)
@@ -11,9 +10,10 @@ def processImage(img):
     contours, hier = cv2.findContours(thresh, cv2.RETR_EXTERNAL,cv2.CHAIN_APPROX_SIMPLE)
     handLandmarks = []
     handLandmarks2 = []
+    farPoints = []
     for contour in contours:
         if cv2.contourArea(contour) > 15000:
-            print(cv2.contourArea(contour))
+            #print(cv2.contourArea(contour))
             #Con ese con return Points te devuelve directamente los puntos del convex Hull, de la otra manera te devolvería
             hull = cv2.convexHull(contour,returnPoints=False)
             #Este bloque de código sirve para la deteccion del hueco entre dedos
@@ -44,14 +44,17 @@ def processImage(img):
                         cv2.circle(img, far, 4, [0, 0, 255], -1)
                         #cv2.circle(img, start, 4, [255, 0, 0], -1)
                         #cv2.circle(img, end, 4, [255, 0, 0], -1)
+                        farPoints.append(far)
                         if hypot(start[0]-end[0], start[1]-end[1]) > 50 and hypot(far[0]-end[0], far[1]-end[1]) > 50:
                                     cv2.circle(img, far, 7, [0, 255, 0], -1)
                                     handLandmarks.append(start)
                                     handLandmarks.append(end)
+                                    
                     if cnt > 0:
                         cnt = cnt+1
                     cont = 0
             handLandmarks.sort()
+            farPoints.sort()
             #print(PuntosDeDedo)
             handLandmarks2 = []
             for p in range(len(handLandmarks)):
@@ -64,4 +67,5 @@ def processImage(img):
                         cv2.circle(img, middlePoint, 7, [0, 0, 255], -1)
                         handLandmarks2.append(middlePoint)
                 cont += 1
+            handLandmarks2 += farPoints
     return handLandmarks2,img
