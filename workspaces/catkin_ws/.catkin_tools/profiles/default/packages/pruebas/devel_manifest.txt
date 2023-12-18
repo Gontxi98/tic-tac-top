@@ -1,0 +1,5 @@
+pruebas
+/home/ubuntu/workspaces/catkin_ws/devel/.private/pruebas/cmake.lock /home/ubuntu/workspaces/catkin_ws/devel/./cmake.lock
+/home/ubuntu/workspaces/catkin_ws/devel/.private/pruebas/share/pruebas/cmake/pruebasConfig-version.cmake /home/ubuntu/workspaces/catkin_ws/devel/share/pruebas/cmake/pruebasConfig-version.cmake
+/home/ubuntu/workspaces/catkin_ws/devel/.private/pruebas/share/pruebas/cmake/pruebasConfig.cmake /home/ubuntu/workspaces/catkin_ws/devel/share/pruebas/cmake/pruebasConfig.cmake
+/home/ubuntu/workspaces/catkin_ws/devel/.private/pruebas/lib/pkgconfig/pruebas.pc /home/ubuntu/workspaces/catkin_ws/devel/lib/pkgconfig/pruebas.pc

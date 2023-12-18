@@ -1,0 +1,1 @@
+/home/ubuntu/workspaces/catkin_ws/devel/.private/ur3e_dual_205_206_moveit_config/share/ur3e_dual_205_206_moveit_config/cmake/ur3e_dual_205_206_moveit_configConfig.cmake

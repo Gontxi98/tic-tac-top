@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  ros1_base:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    environment:
+      - DISPLAY=$DISPLAY
+      - LD_LIBRARY_PATH=/usr/local/nvidia/lib64
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+    privileged: true
+    volumes:
+      - ./workspaces:/home/ubuntu/workspaces
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - $XAUTHORITY:/root/.Xauthority
+      - /dev:/dev
+    network_mode: host

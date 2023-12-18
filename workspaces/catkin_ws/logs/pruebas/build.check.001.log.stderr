@@ -1,0 +1,13 @@
+[31m[1mCMake Error[0m at /home/ubuntu/workspaces/catkin_ws/build/pruebas/cmake/pruebas-genmsg.cmake:3 (message):
+  Could not find messages which
+  '/home/ubuntu/workspaces/catkin_ws/src/pruebas/msg/persona.msg' depends on.
+  Did you forget to specify generate_messages(DEPENDENCIES ...)?
+
+  Cannot locate message [String] in package [pruebas] with paths
+  [['/home/ubuntu/workspaces/catkin_ws/src/pruebas/msg']]
+[36mCall Stack (most recent call first):[0m
+  /opt/ros/noetic/share/genmsg/cmake/genmsg-extras.cmake:307 (include)
+  CMakeLists.txt:70 (generate_messages)
+
+
+make: *** [Makefile:334: cmake_check_build_system] Error 1

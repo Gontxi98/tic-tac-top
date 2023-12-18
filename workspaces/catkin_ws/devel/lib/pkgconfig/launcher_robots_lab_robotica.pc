@@ -1,0 +1,1 @@
+/home/ubuntu/workspaces/catkin_ws/devel/.private/launcher_robots_lab_robotica/lib/pkgconfig/launcher_robots_lab_robotica.pc

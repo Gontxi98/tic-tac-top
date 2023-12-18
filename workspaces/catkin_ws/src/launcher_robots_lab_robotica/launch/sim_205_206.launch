@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<launch>
+  <include file="$(find ur3e_dual_205_206_moveit_config)/launch/ur3e_205_206_moveit_sim.launch"/>
+</launch>

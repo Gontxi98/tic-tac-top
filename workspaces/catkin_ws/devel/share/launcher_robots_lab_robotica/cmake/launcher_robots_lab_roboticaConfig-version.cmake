@@ -1,0 +1,1 @@
+/home/ubuntu/workspaces/catkin_ws/devel/.private/launcher_robots_lab_robotica/share/launcher_robots_lab_robotica/cmake/launcher_robots_lab_roboticaConfig-version.cmake
