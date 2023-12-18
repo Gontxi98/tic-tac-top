@@ -1,0 +1,49 @@
+controller_list:
+  - name: fake_robot_205_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - shoulder_pan_joint_205
+      - shoulder_lift_joint_205
+      - elbow_joint_205
+      - wrist_1_joint_205
+      - wrist_2_joint_205
+      - wrist_3_joint_205
+  - name: fake_robot_206_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - shoulder_pan_joint_206
+      - shoulder_lift_joint_206
+      - elbow_joint_206
+      - wrist_1_joint_206
+      - wrist_2_joint_206
+      - wrist_3_joint_206
+  - name: fake_gripper_205_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - finger_joint_205
+  - name: fake_gripper_206_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - finger_joint_206
+  - name: fake_dual_controller
+    type: $(arg fake_execution_type)
+    joints:
+      - shoulder_pan_joint_205
+      - shoulder_lift_joint_205
+      - elbow_joint_205
+      - wrist_1_joint_205
+      - wrist_2_joint_205
+      - wrist_3_joint_205
+      - shoulder_pan_joint_206
+      - shoulder_lift_joint_206
+      - elbow_joint_206
+      - wrist_1_joint_206
+      - wrist_2_joint_206
+      - wrist_3_joint_206
+initial:  # Define initial robot poses per group
+  - group: robot_205
+    pose: zeros
+  - group: robot_206
+    pose: zeros
+  - group: dual
+    pose: home

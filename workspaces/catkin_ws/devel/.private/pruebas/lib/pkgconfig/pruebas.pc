@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/workspaces/catkin_ws/devel/.private/pruebas
+
+Name: pruebas
+Description: Description of pruebas
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

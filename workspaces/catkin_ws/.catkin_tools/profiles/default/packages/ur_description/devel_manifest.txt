@@ -1,0 +1,5 @@
+universal_robot/ur_description
+/home/ubuntu/workspaces/catkin_ws/devel/.private/ur_description/cmake.lock /home/ubuntu/workspaces/catkin_ws/devel/./cmake.lock
+/home/ubuntu/workspaces/catkin_ws/devel/.private/ur_description/share/ur_description/cmake/ur_descriptionConfig-version.cmake /home/ubuntu/workspaces/catkin_ws/devel/share/ur_description/cmake/ur_descriptionConfig-version.cmake
+/home/ubuntu/workspaces/catkin_ws/devel/.private/ur_description/share/ur_description/cmake/ur_descriptionConfig.cmake /home/ubuntu/workspaces/catkin_ws/devel/share/ur_description/cmake/ur_descriptionConfig.cmake
+/home/ubuntu/workspaces/catkin_ws/devel/.private/ur_description/lib/pkgconfig/ur_description.pc /home/ubuntu/workspaces/catkin_ws/devel/lib/pkgconfig/ur_description.pc

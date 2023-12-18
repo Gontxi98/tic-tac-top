@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/workspaces/catkin_ws/devel/.private/nodo_robotica
+
+Name: nodo_robotica
+Description: Description of nodo_robotica
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

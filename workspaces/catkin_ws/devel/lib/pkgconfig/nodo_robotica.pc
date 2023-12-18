@@ -1,0 +1,1 @@
+/home/ubuntu/workspaces/catkin_ws/devel/.private/nodo_robotica/lib/pkgconfig/nodo_robotica.pc

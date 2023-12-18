@@ -1,0 +1,1 @@
+/home/ubuntu/workspaces/catkin_ws/devel/.private/rg2_driver/lib/python3/dist-packages/rg2_driver/__init__.py

@@ -1,0 +1,25 @@
+controller_list:
+  # - name: robot_1_controller
+  # action_ns: follow_joint_trajectory
+  - name: robot_205
+    action_ns: scaled_pos_joint_traj_controller/follow_joint_trajectory    
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - shoulder_pan_joint_205
+      - shoulder_lift_joint_205
+      - elbow_joint_205
+      - wrist_1_joint_205
+      - wrist_2_joint_205
+      - wrist_3_joint_205
+  - name: robot_206
+    action_ns: scaled_pos_joint_traj_controller/follow_joint_trajectory    
+    default: True
+    type: FollowJointTrajectory
+    joints:
+      - shoulder_pan_joint_206
+      - shoulder_lift_joint_206
+      - elbow_joint_206
+      - wrist_1_joint_206
+      - wrist_2_joint_206
+      - wrist_3_joint_206

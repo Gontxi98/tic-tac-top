@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/workspaces/catkin_ws/devel/.private/ur3e_203_moveit_config__
+
+Name: ur3e_203_moveit_config__
+Description: Description of ur3e_203_moveit_config__
+Version: 0.3.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

@@ -1,0 +1,1 @@
+/home/ubuntu/workspaces/catkin_ws/devel/.private/rg2_driver/lib/pkgconfig/rg2_driver.pc

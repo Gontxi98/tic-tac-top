@@ -1,0 +1,8 @@
+prefix=/home/ubuntu/workspaces/catkin_ws/install
+
+Name: ur3e_204_moveit_config
+Description: Description of ur3e_204_moveit_config
+Version: 0.3.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

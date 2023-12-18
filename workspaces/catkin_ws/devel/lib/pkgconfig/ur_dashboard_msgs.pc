@@ -1,0 +1,1 @@
+/home/ubuntu/workspaces/catkin_ws/devel/.private/ur_dashboard_msgs/lib/pkgconfig/ur_dashboard_msgs.pc
